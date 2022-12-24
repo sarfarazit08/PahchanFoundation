@@ -1,0 +1,397 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="UTF-8">
+<title>Slideshow</title>
+<style>
+	html {
+		background-image: url(pahchan_foundation_gallery/dsc_0692_jpg.jpeg);
+		background-position: center; 
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		transition: background 3s;
+		transform: translate3d(0,0,0);
+	}
+	#controls {
+		position: absolute;
+		left: 0;
+		right: 0;
+		text-align: center;
+	bottom: 1em;
+	}
+	.control {
+		cursor: pointer;
+	}
+	</style>
+</head>
+<body>
+<div id="controls"></div>
+<script>
+var controls = document.getElementById('controls');
+var speed = 5000; 
+var currentImg = 0;
+var img = [
+
+		"pahchan_foundation_gallery/dsc_0692_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0693_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0694_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0695_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0696_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0697_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0698_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0699_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0700_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0701_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0703_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0704_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0705_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0706_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0708_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0711_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0712_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0713_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0714_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0716_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0717_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0718_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0719_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0720_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0721_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0722_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0723_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0724_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0725_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0726_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0727_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0728_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0731_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0732_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0733_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0734_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0735_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0736_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0737_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0738_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0739_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0740_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0741_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0742_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0743_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0744_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0746_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0747_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0748_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0749_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0752_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0753_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0754_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0755_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0756_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0758_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0759_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0760_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0761_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0762_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0764_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0765_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0767_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0770_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0771_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0772_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0773_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0774_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0775_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0776_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0777_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0778_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0779_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0780_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0781_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0782_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0783_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0784_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0785_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0786_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0787_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0788_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0789_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0790_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0791_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0793_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0795_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0796_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0798_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0799_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0800_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0803_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0805_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0806_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0808_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0809_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0810_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0811_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0812_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0813_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0814_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0815_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0816_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0817_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0818_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0819_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0820_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0822_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0823_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0824_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0825_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0826_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0828_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0829_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0830_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0831_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0832_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0833_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0834_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0835_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0837_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0838_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0839_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0840_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0841_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0842_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0843_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0844_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0845_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0846_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0847_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0848_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0852_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0853_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0854_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0855_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0856_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0857_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0858_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0859_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0861_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0862_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0864_nef.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0865_nef.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0866_nef.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0867_nef.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0869_nef.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0870_nef.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0871_nef.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0872_nef.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0873_nef.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0874_nef.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0875_nef.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0876_nef.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0877_nef.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0878_nef.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0879_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0880_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0881_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0882_jpg.jpeg",
+		
+		"pahchan_foundation_gallery/dsc_0883_jpg.jpeg",
+		
+    ];
+
+function stopAtImg(index) {
+    return function() {
+        clearInterval(timer);
+        buttons[currentImg].checked = false;
+        currentImg = index;
+        switchToImg();
+    };
+}
+
+function switchToImg() {
+    document.documentElement.style.backgroundImage = "url('" + img[currentImg] + "')";
+    buttons[currentImg].checked = true;
+    buttons[currentImg].focus();
+}
+
+if (controls) {
+    for (var i = 0; i < img.length; i++ ) {
+        var el = document.createElement("input");
+        el.type = 'radio';
+        el.className = 'control';
+        if ( i == 0 ) { el.checked = true; }
+        controls.appendChild(el);
+    }
+    var buttons = controls.querySelectorAll('.control');
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", stopAtImg(i));
+    }
+    buttons[0].focus();
+    var timer = setInterval(function() {
+        buttons[currentImg].checked = false;
+        currentImg++;
+        if (currentImg == img.length) { currentImg = 0;}
+        switchToImg(currentImg);
+    }, speed);
+}
+</script>
+</body>
+</html>
